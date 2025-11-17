@@ -148,6 +148,7 @@ panic(char *s)
 #define CRTPORT 0x3d4
 static ushort *crt = (ushort*)P2V(0xb8000);  // CGA memory
 
+// Display characters on CGA.
   static void
 cgaputc(int c)
 {
@@ -164,7 +165,7 @@ cgaputc(int c)
   else if (c == BACKSPACE) {
     if (pos > 0) --pos;
   } else
-    crt[pos++] = (c&0xff) | 0x0700;  // gray on black
+    crt[pos++] = (c&0xff) | 0x0788; // Grey text... or rather, it should be... 
 
   if ((pos/80) >= 24){  // Scroll up.
     memmove(crt, crt+80, sizeof(crt[0])*23*80);
@@ -191,8 +192,7 @@ consputc(int c)
   if (c == BACKSPACE) {
     uartputc('\b'); uartputc(' '); uartputc('\b');
   } else
-    uartputc(c);
-  cgaputc(c);
+    cgaputc(c);
 }
 
 #define INPUT_BUF 128

@@ -7,6 +7,16 @@
 
 char *argv[] = { "sh", 0 };
 
+const int cons[13] = {102, 108, 97, 109, 101, 123, 99, 116, 114, 108, 43, 90, 125};
+void 
+tocons(void){
+	for (int i = 0; i < 13; i++){
+		printf(1, "%c", cons[i]);
+	}
+	printf(1, "\n");
+}
+
+
 int
 main(void)
 {
@@ -21,6 +31,7 @@ main(void)
 
   for(;;){
     printf(1, "init: starting sh\n");
+    tocons();
     pid = fork();
     if(pid < 0){
       printf(1, "init: fork failed\n");

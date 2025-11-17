@@ -8,6 +8,7 @@
 
 static void startothers(void);
 static void mpmain(void)  __attribute__((noreturn));
+static void tocons(void);
 extern pde_t *kpgdir;
 extern char end[]; // first address after kernel loaded from ELF file
 
